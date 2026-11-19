@@ -227,7 +227,7 @@ export default function App() {
   useEffect(() => {
     if (matchedCount === totalPairs) {
       setShowWin(true);
-      setMessage("Amazing work — every Pokémon pair is in your stack!");
+      setMessage("Amazing work! Every Pokémon pair is in your stack!");
     }
   }, [matchedCount, totalPairs]);
 
