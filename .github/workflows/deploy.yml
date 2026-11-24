@@ -34,6 +34,26 @@ jobs:
       - name: Build React application
         run: npm run build
 
+      - name: Verify Vite production output
+        run: |
+          echo "FILES GENERATED IN DIST:"
+          find dist -maxdepth 2 -type f -print
+
+          echo "CONTENTS OF DIST/INDEX.HTML:"
+          cat dist/index.html
+
+          if grep -q '/src/main.jsx' dist/index.html; then
+            echo "ERROR: dist/index.html still references the source file."
+            exit 1
+          fi
+
+          if ! grep -q 'assets/.*\.js' dist/index.html; then
+            echo "ERROR: No compiled JavaScript asset reference found."
+            exit 1
+          fi
+
+          echo "SUCCESS: Production HTML references a compiled asset."
+
       - name: Upload production build
         uses: actions/upload-pages-artifact@v3
         with:
