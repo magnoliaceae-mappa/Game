@@ -24,7 +24,7 @@ const pokemons = [
   { id: 148, name: "Dragonair", type: "Dragon", hp: 61, attack: 84 },
 ];
 
-const spriteUrl = (id) => `/images/${id}.png`;
+const spriteUrl = (id) => `${import.meta.env.BASE_URL}images/${id}.png`;
 
 function shuffleCards() {
   const cards = pokemons.flatMap((pokemon) => [
